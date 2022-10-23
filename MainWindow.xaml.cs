@@ -23,6 +23,7 @@ namespace Prakt6
         Pair para = new Pair();
         Pair para2 = new Pair();
         Pair para3 = new Pair();
+        Pair paranov = new Pair();
 
         public MainWindow()
         {
@@ -33,8 +34,8 @@ namespace Prakt6
         {
             Int32.TryParse(pair1.Text, out int p1); Int32.TryParse(pair2.Text, out int p2);
             para.Pair1 = p1; para.Pair2 = p2;
-            if (para.Prov()) Itog.Text = "Числа равны";
-            else Itog.Text = "Числа не равны";
+            if (para) Itog.Text = "Числа равны";
+            else Itog.Text = "Числа неравны";
         }
 
         private void Proizv(object sender, RoutedEventArgs e) //Проба
@@ -44,17 +45,17 @@ namespace Prakt6
             Itog.Text = Convert.ToString(para.Peremnozh());
         }
 
-        private void Otric(object sender, RoutedEventArgs e)
+        private void Вычитание2Пар(object sender, RoutedEventArgs e)
         {
             Int32.TryParse(pair1.Text, out int p1); Int32.TryParse(pair2.Text, out int p2);
             para.Pair1 = p1; para.Pair2 = p2;
             Int32.TryParse(pair3.Text, out int p3); Int32.TryParse(pair4.Text, out int p4);
             para2.Pair1 = p3; para2.Pair2 = p4;
-            para.Vichit(para2, out int paraNov1, out int paraNov2);
-            Itog.Text = Convert.ToString($"{paraNov1};{paraNov2}");
+            paranov = para - para2;
+            Itog.Text = Convert.ToString($"{paranov.Pair1};{paranov.Pair2}");
         }
 
-        private void TriPari(object sender, RoutedEventArgs e)
+        private void Вычитание3Пар(object sender, RoutedEventArgs e)
         {
             Int32.TryParse(pair1.Text, out int p1); Int32.TryParse(pair2.Text, out int p2);
             para.Pair1 = p1; para.Pair2 = p2;
@@ -62,15 +63,14 @@ namespace Prakt6
             para2.Pair1 = p3; para2.Pair2 = p4;
             Int32.TryParse(pair5.Text, out int p5); Int32.TryParse(pair6.Text, out int p6);
             para3.Pair1 = p5; para3.Pair2 = p6;
-            para.Vichit(para2, para3, out int paraNov1, out int paraNov2);
-            Itog.Text = Convert.ToString($"{paraNov1};{paraNov2}");
+            paranov = para.Vichit(para2, para3);
+            Itog.Text = $"{paranov.Pair1};{paranov.Pair2}";
         }
 
         private void Spravka(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Калитин Сергей ИСП-31, Вариант 13\n Задание:\n Создать базовый класс Pair (пара целых чисел)." +
-                "Создать необходимые методы и свойства.Определить методы с операциями проверки на равенство и перемножения полей." +
-                " Реализовать операцию вычитания пар по формуле (а, b) - (с, d) = (а - c, b - d).Создать перегруженный метод для вычитания трех пар чисел.");
+            MessageBox.Show("Калитин Сергей ИСП-31, Вариант 13\n Задание:\n Использовать базовый класс Pair (пара целых чисел). Разработать операции)"+
+                "определения равенства/неравенства чисел true/false. Разработать операции вычитания пар по формуле (а, b) - (с, d) = (а - c, b - d).");
         }
 
         private void Quit(object sender, RoutedEventArgs e)
